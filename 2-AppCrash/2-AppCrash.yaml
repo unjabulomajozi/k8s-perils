@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app-crash
+  labels:
+    name: app-crash
+spec:
+  containers:
+  - name: k8s-perils-2-app-crash
+    image: unjabulomajozi/k8s-perils-2-app-crash:0.0.1
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 8080
