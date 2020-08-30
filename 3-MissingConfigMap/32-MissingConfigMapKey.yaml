@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-map-found
+data:
+  config-map-key-2: value
+
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-missing-config-map-key
+  labels:
+    name: pod-missing-config-map-key
+spec:
+  containers:
+  - name: pod-missing-config-map-container-1
+    image: nginx
+    env:
+      - name: CONFIG_MAP_KEY
+        valueFrom:
+            configMapKeyRef:
+              name: config-map-found
+              key: config-map-key
+
